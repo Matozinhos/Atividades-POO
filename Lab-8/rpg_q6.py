@@ -17,24 +17,24 @@ class Mago(Personagem):
     
     def __add__(self, other : float) -> float:
         self.mana += other
-        return self.mana
+        return f" Ganhou mana: {self.mana}"
     
     def __sub__(self, other : float) -> float:
         if not self.mana - other <= 0 :
             self.mana -= other
-            return self.mana
+            return f"Perdeu aura: {self.mana}"
         else :
-            return False
+            return "Sem Mana"
     
     def __mul__(self, other : float) -> float:
         self.mana *= other
-        return self.mana
+        return f"Ganhou mana: {self.mana}"
     
     def __truediv__(self, other : float) -> float:
         if other != 0:
             self.mana /= other
             self.mana
-        else : return False
+        else : return "Sem Mana"
     
 class Barbaro(Personagem):
     def __init__(self, nome, vida_inicial, stamina : float):
@@ -48,32 +48,33 @@ class Barbaro(Personagem):
     def __add__(self, other : float):
         if self.furia:
             self.stamina += other * 1.5
+            f"Ganhou stamina {self.stamina}"
         else:
             self.stamina += other
-        return self.stamina
+        return f"Ganhou stamina {self.stamina}"
     
     def __sub__(self, other : float):
         if self.furia and self.stamina - other <= 0:
-            return False
+            return f"Sem stamina"
         elif self.furia and self.stamina - other > 0:
             self.stamina -= other
-            return self.stamina
+            return f"Perdeu stamina: {self.stamina}"
         elif not self.furia and self.stamina - other <= 0:
             self.stamina = 0
             self.furia = True
-            return self.stamina
+            return f"Perdeu stamina: {self.stamina} Entrou em estado de Furia"
         elif not self.furia and self.stamina - other > 0:
             self.stamina -= other
-            return self.stamina
+            return f"Perdeu stamina: {self.stamina}"
     
     def __mul__(self, other : float):
         self.stamina *= other
         if self.furia: self.vida += 5
-        return self.stamina
+        return f"Ganhou stamina: {self.stamina}"
 
     def __truediv__(self, other : float):
         self.stamina /= other
-        return self.stamina
+        return f"Perdeu stamina: {self.stamina}"
     
 Personagem_Atual : Personagem = None
     
@@ -98,17 +99,23 @@ while True:
     print("1. Tomar Porção Simples")
     print("2. Tomar Porção Especial")
     print("3. Ataque Básico")
-    print("4. Ataque Especial\n")
+    print("4. Ataque Especial")
+    print("5. Mostrar personagens")
+    print("6. Sair")
 
     match int(input()):
         case 1:
-            Personagem_Atual + 5
+            print(Personagem_Atual + 5)
         case 2: 
-            Personagem_Atual * 1.5
+            print(Personagem_Atual * 1.5)
         case 3:
-            Personagem_Atual - 2
+            print(Personagem_Atual - 2)
         case 4: 
-            Personagem_Atual / 2
+            print(Personagem_Atual / 2)
+        case 5: 
+            print(Personagem_Atual)
+        case 6: 
+            break
 
     import random
     Personagem_Atual.tomar_dano(random.randint(1,10))
