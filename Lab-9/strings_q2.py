@@ -1,1 +1,0 @@
-print(input("Digite uma frase: ").count(" "))
