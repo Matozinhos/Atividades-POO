@@ -1,4 +1,4 @@
-# QUESTAO 1
+# # QUESTAO 1
 
 Inteiros = list(map(int, input("Digite pelo menos 4 numeros inteiros: ").split()))
 
@@ -9,12 +9,12 @@ print("Lista Invertida: " + ", ".join(map(str, Inteiros[::-1])))
 print("Elementos de indice par: " + ", ".join(map(str, Inteiros[::2])))
 print("Elementos de indice impar: " + ", ".join(map(str, Inteiros[1::2])))
 
-# QUESTAO 2
+# # QUESTAO 2
 
 URLs = ["www.google.com", "www.gmail.com", "www.github.com", "www.reddit.com", "www.yahoo.com"]
 print("Dominios: " + ", ".join([dominio.split(".")[1] for dominio in URLs]))
 
-# QUESTAO 3
+# # QUESTAO 3
 
 from random import randint
 lista = [randint(1, 100) for _ in range(10)]
@@ -41,7 +41,7 @@ for i in range(len(max(listas[0], listas[1]))):
     try: print(f"{listas[1][i]} ", end="")
     except: pass
 
-# QUESTAO 5
+# # QUESTAO 5
 
 from random import randint
 
@@ -57,3 +57,16 @@ for i in max(lista1, lista2):
         intercecao.append(i)
 
 print("Intersecção - ", ", ".join(map(str, intercecao)))
+
+# QUESTAO 6
+
+pulo = int(input("Tamanho para divisão: "))
+''
+print([[randint(0, 100) for _ in range(20)][i:i+pulo] for i in range(0, 20, pulo)])
+
+# QUESTAO 7
+n = int(input("Digite n: "))
+m = [[f"{i}" if i >= 10 else f" {i}" for _ in range(n)] for i in range(n)]
+
+for linha in m:
+    print(" ".join(map(str, linha)))
