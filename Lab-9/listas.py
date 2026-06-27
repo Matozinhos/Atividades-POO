@@ -1,4 +1,4 @@
-# # QUESTAO 1
+# QUESTAO 1
 
 Inteiros = list(map(int, input("Digite pelo menos 4 numeros inteiros: ").split()))
 
@@ -9,17 +9,40 @@ print("Lista Invertida: " + ", ".join(map(str, Inteiros[::-1])))
 print("Elementos de indice par: " + ", ".join(map(str, Inteiros[::2])))
 print("Elementos de indice impar: " + ", ".join(map(str, Inteiros[1::2])))
 
-# # QUESTAO 2
+# QUESTAO 2
 
 URLs = ["www.google.com", "www.gmail.com", "www.github.com", "www.reddit.com", "www.yahoo.com"]
 print("Dominios: " + ", ".join([dominio.split(".")[1] for dominio in URLs]))
 
-# # QUESTAO 3
+# QUESTAO 3
+
+def quicksort(lista) -> list:
+    vetor = lista
+    def partition(lista, left, right):
+        pivo = lista[right]
+        i = left - 1
+
+        for j in range(left, right):
+            if lista[j] <= pivo:
+                i+=1
+                lista[j], lista[i] = lista[i], lista[j]
+        lista[i+1], lista[right] = lista[right], lista[i+1]
+        return i+1
+    
+    def sort(lista, left, right):
+        if left < right:
+            pi = partition(lista, left, right)
+            sort(lista, left, pi-1)
+            sort(lista, pi+1, right)        
+
+    sort(vetor, 0, len(vetor)-1)
+    return vetor
+
 
 from random import randint
 lista = [randint(1, 100) for _ in range(10)]
 
-print("Lista ordenada: " + ", ".join(map(str, sorted(lista))))
+print("Lista ordenada: " + ", ".join(map(str, quicksort(lista))))
 print("Lista original: " + ", ".join(map(str, lista))) 
 print(f"Indice do maior elemento: {lista.index(max(lista))}")
 print(f"Indice do menor elemento: {lista.index(min(lista))}")
